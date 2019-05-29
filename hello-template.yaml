@@ -1,0 +1,25 @@
+apiVersion: "kapitan.razee.io/v1alpha1"
+kind: MustacheTemplate
+metadata:
+  name: hello-template
+  namespace: default
+spec:
+  env:
+  - name: hello-app-version
+    value: "{{TRAVIS_TAG}}"
+  - name: hello-app-version
+    valueFrom:
+      configMapKeyRef:
+         name: hello-app
+         key: version
+
+  templates:
+  - apiVersion: "kapitan.razee.io/v1alpha1"
+    kind: RemoteResource
+    metadata:
+      name: <remote_resource_name>
+      namespace: <namespace>
+    spec:
+      requests:
+      - options:
+          url: https://mysourcerepo.com/{{sample-app-version}}-sample-app.yaml

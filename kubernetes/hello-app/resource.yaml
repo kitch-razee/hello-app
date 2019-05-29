@@ -1,3 +1,18 @@
+apiVersion: "kapitan.razee.io/v1alpha1"
+kind: RemoteResource
+metadata:
+  name: hello-remote
+  namespace: default
+  annotations:
+    version: "{{TRAVIS_COMMIT}}"
+    hello-app/git-repo: "{{{GIT_REMOTE}}}"
+    hello-app/commit-sha: "{{TRAVIS_COMMIT}}"
+
+spec:
+  requests:
+    - options:
+        url: https://raw.githubusercontent.com/kitch-razee/hello-app/master/hello-managedset.yaml
+
 kind: ManagedSet
 apiVersion: kapitan.razee.io/v1alpha1
 metadata:
@@ -17,18 +32,18 @@ spec:
     - apiVersion: "kapitan.razee.io/v1alpha1"
       kind: RemoteResource
       metadata:
-        name: hello-svc
-        namespace: default
-      spec:
-        requests:
-          - options:
-              url: https://raw.githubusercontent.com/kitch-razee/hello-app/master/hello-svc.yaml
-    - apiVersion: "kapitan.razee.io/v1alpha1"
-      kind: RemoteResource
-      metadata:
         name: hello-deployment
         namespace: default
       spec:
         requests:
           - options:
               url: https://raw.githubusercontent.com/kitch-razee/hello-app/master/hello-deployment.yaml
+    - apiVersion: "kapitan.razee.io/v1alpha1"
+      kind: RemoteResource
+      metadata:
+        name: hello-svc
+        namespace: default
+      spec:
+        requests:
+          - options:
+              url: https://raw.githubusercontent.com/kitch-razee/hello-app/master/hello-svc.yaml
