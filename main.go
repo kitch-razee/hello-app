@@ -49,7 +49,7 @@ func hello(w http.ResponseWriter, r *http.Request) {
 	if fromEnv := os.Getenv("PERSON"); fromEnv != "" {
 		person = fromEnv
 	}
-	fmt.Fprintf(w, "Hello, OpenShift %s!\n", person)
+	fmt.Fprintf(w, "Hello, OpenShift kitch2 %s!\n", person)
 	fmt.Fprintf(w, "Version: 1.0.0\n")
 	fmt.Fprintf(w, "Hostname: %s\n", host)
 }
